@@ -76,7 +76,7 @@ body[data-bg="white"] .bg::after{content:"";position:absolute;inset:0;
 .swashL{ left:10%; }
 .swashR{ left:90%; transform:translate(-50%,-50%) scaleX(-1); }
 
-.goldline{position:absolute;left:50%;top:80%;width:0;height:5px;background:var(--gold);
+.goldline{position:absolute;left:50%;top:85%;width:0;height:5px;background:var(--gold);
   transform:translate(-50%,-50%);z-index:6;display:none;border-radius:3px;
   box-shadow:0 0 16px rgba(185,146,58,.55);}
 

@@ -53,12 +53,11 @@
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.6, defaults: { ease: out } });
 
     if (concept === "merge") {
-      // הכובע מורכב משני חצאים שנכנסים מהצדדים ומתאחדים, ואז הטקסט
-      gsap.set(["#hat", "#logoFull"], { autoAlpha: 0 });
+      // הכובע מורכב משני חצאים שנכנסים מהצדדים ומתאחדים, ואז הלוגו המלא עולה כבלוק
+      gsap.set("#hat", { autoAlpha: 0 });
       gsap.set("#hatL", { display: "block", autoAlpha: 1, clipPath: "inset(0 50% 0 0)", x: -260, xPercent: -50, rotation: -6 });
       gsap.set("#hatR", { display: "block", autoAlpha: 1, clipPath: "inset(0 0 0 50%)", x: 260, xPercent: -50, rotation: 6 });
-      gsap.set("#logoTop", { display: "block", autoAlpha: 0, y: 60 });
-      gsap.set("#logoStrip", { display: "block", autoAlpha: 0, scaleX: 0.6, transformOrigin: "50% 50%" });
+      gsap.set("#logoFull", { autoAlpha: 0, y: 64 });
       gsap.set("#seam", { display: "block" });
 
       tl.to("#hatL", { x: 0, rotation: 0, duration: 1.0, ease: "power4.out" }, 0.2)
@@ -67,8 +66,7 @@
         .to("#seam", { opacity: 0, duration: 0.5 }, 1.2)
         .to("#hatL", { y: "-=10", duration: 0.18, yoyo: true, repeat: 1 }, 1.1) // micro impact
         .to("#hatR", { y: "-=10", duration: 0.18, yoyo: true, repeat: 1 }, 1.1)
-        .to("#logoTop", { autoAlpha: 1, y: 0, duration: 0.7 }, 1.4)
-        .to("#logoStrip", { autoAlpha: 1, scaleX: 1, duration: 0.6, ease: "power2.out" }, 1.75)
+        .to("#logoFull", { autoAlpha: 1, y: 0, duration: 0.8, ease: "power3.out" }, 1.45)
         .to({}, { duration: 1.7 })
         .to("#world > *", { autoAlpha: 0, duration: 0.5 });
     }
@@ -101,21 +99,19 @@
     }
 
     else if (concept === "draw") {
-      // הכובע מופיע → הטקסט נחשף ב-wipe מימין לשמאל → קו זהוב → פס → פיתוחים כעיטור
+      // הכובע מופיע → הלוגו המלא נחשף ב-wipe מימין לשמאל → קו זהוב → פיתוחים כעיטור
       gsap.set(["#hatL", "#hatR", "#seam"], { display: "none" });
       gsap.set("#hat", { autoAlpha: 0, scale: 0.8, y: -18 });
-      gsap.set("#logoTop", { display: "block", autoAlpha: 1, clipPath: "inset(0 0 0 100%)" }); // נחשף מימין (RTL)
-      gsap.set("#logoStrip", { display: "block", autoAlpha: 0, y: 24 });
+      gsap.set("#logoFull", { autoAlpha: 1, clipPath: "inset(0 0 0 100%)" }); // נחשף מימין (RTL)
       gsap.set("#goldline", { display: "block", width: 0 });
       gsap.set("#swashL", { display: "block", autoAlpha: 0, x: -46, scale: 0.7 });
       gsap.set("#swashR", { display: "block", autoAlpha: 0, x: 46, scale: 0.7 });
 
       tl.to("#hat", { autoAlpha: 1, scale: 1, y: 0, duration: 0.85, ease: "back.out(1.3)" }, 0.25)
-        .to("#logoTop", { clipPath: "inset(0 0 0 0%)", duration: 0.95, ease: "power2.inOut" }, 0.95)
-        .to("#goldline", { width: 520, duration: 0.7, ease: "power2.inOut" }, 1.45)
-        .to("#logoStrip", { autoAlpha: 1, y: 0, duration: 0.6 }, 1.7)
-        .to(["#swashL", "#swashR"], { autoAlpha: 0.9, x: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 1.95)
-        .to({}, { duration: 1.6 })
+        .to("#logoFull", { clipPath: "inset(0 0 0 0%)", duration: 1.0, ease: "power2.inOut" }, 0.95)
+        .to("#goldline", { width: 520, duration: 0.7, ease: "power2.inOut" }, 1.7)
+        .to(["#swashL", "#swashR"], { autoAlpha: 0.9, x: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 2.0)
+        .to({}, { duration: 1.5 })
         .to("#world > *", { autoAlpha: 0, duration: 0.5 });
     }
 
