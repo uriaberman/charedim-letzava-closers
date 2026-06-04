@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>חרדים לצבא · סגירים לפודקאסט — 5 כיוונים לאישור</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --olive:#808050; --gold:#c9a44d; --ink:#11100a; --panel:#26240f; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Rubik",system-ui,Arial,sans-serif;background:#16150d;color:#f2f1e6;
+    background-image:repeating-linear-gradient(135deg, rgba(255,255,255,.018) 0 2px, transparent 2px 12px);
+    min-height:100vh;padding:0 0 80px}
+  header{padding:46px 28px 30px;text-align:center;border-bottom:1px solid rgba(201,164,77,.22);
+    background:linear-gradient(180deg,#1c1b0f,#16150d)}
+  header .kicker{color:var(--gold);font-weight:600;letter-spacing:3px;font-size:14px;margin-bottom:10px}
+  header h1{font-size:30px;font-weight:700;margin-bottom:8px}
+  header h1 b{color:var(--olive)}
+  header p{color:#b9b8a6;font-size:15px;max-width:680px;margin:0 auto;line-height:1.6}
+  .toolbar{display:flex;gap:12px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+  .btn{background:var(--gold);color:#1a160a;border:none;border-radius:999px;padding:11px 22px;
+    font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;transition:transform .15s,filter .15s}
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.07)}
+  .btn.ghost{background:transparent;color:var(--gold);border:1.5px solid rgba(201,164,77,.5)}
+
+  .grid{display:grid;gap:26px;padding:34px 28px 0;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));max-width:1700px;margin:0 auto}
+  .card{background:var(--panel);border:1px solid rgba(201,164,77,.16);border-radius:20px;overflow:hidden;
+    display:flex;flex-direction:column;box-shadow:0 18px 50px rgba(0,0,0,.4)}
+  .num{position:absolute;top:14px;right:14px;z-index:3;width:38px;height:38px;border-radius:50%;
+    background:rgba(0,0,0,.55);color:var(--gold);display:grid;place-items:center;font-weight:700;font-size:18px;
+    border:1.5px solid rgba(201,164,77,.5)}
+  .vidwrap{position:relative;width:100%;aspect-ratio:9/16;background:#000}
+  .vidwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+  .meta{padding:18px 18px 20px}
+  .meta h2{font-size:21px;font-weight:700;margin-bottom:4px}
+  .meta .bg-tag{display:inline-block;font-size:12px;color:var(--gold);background:rgba(201,164,77,.12);
+    border-radius:6px;padding:3px 9px;margin-bottom:10px;font-weight:500}
+  .meta p{color:#c2c1b0;font-size:13.5px;line-height:1.6;min-height:62px}
+  .cardbtns{display:flex;gap:9px;margin-top:14px}
+  .cardbtns button{flex:1;background:rgba(255,255,255,.06);color:#f2f1e6;border:1px solid rgba(255,255,255,.12);
+    border-radius:10px;padding:9px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s}
+  .cardbtns button:hover{background:rgba(201,164,77,.16)}
+  footer{text-align:center;color:#6f6e5c;font-size:13px;margin-top:44px;padding:0 24px;line-height:1.7}
+  footer b{color:#9b9a85}
+</style>
+</head>
+<body>
+<header>
+  <div class="kicker">חרדים לצבא · פודקאסט · רילס אינסטגרם 9:16</div>
+  <h1>5 כיווני <b>סגיר</b> לבחירה</h1>
+  <p>הנפשה של המגבעת והכומתה שמתאחדות עם הלוגו. כולן משתמשות בנכסים המקוריים שלך, נאמנות מלאה למקרו — בלי מילה נוספת. כל סגיר רץ בלולאה. בחר את הכיוון (או שילוב), ואז ארנדר ל-MP4 מוכן להעלאה.</p>
+  <div class="toolbar">
+    <button class="btn" onclick="reloadAll()">▶ נגן הכל מחדש</button>
+    <button class="btn ghost" onclick="document.body.classList.toggle('big')">⤢ הגדל/הקטן תצוגה</button>
+  </div>
+</header>
+
+<div class="grid" id="grid"></div>
+
+<footer>
+  פורמט: 1080×1920 (9:16) · משך ~5 שניות · לולאה · נכסים: כובע מבודד (rembg) + לוגו מקורי<br>
+  <b>השלב הבא:</b> אישור כיוון → רינדור MP4 איכותי (60fps) מוכן לרילס.
+</footer>
+
+<script>
+  const closers = [
+    {n:1, file:"closer-1-merge.html",     title:"החיבור",          bg:"זית בהיר",      desc:"שני חצאי הכובע נכנסים מהצדדים, נפגשים ומתאחדים — ואז הטקסט עולה. מספר ויזואלית את סיפור המיזוג של שני העולמות."},
+    {n:2, file:"closer-2-stamp.html",     title:"החותם",           bg:"זית כהה",       desc:"הכובע צונח מלמעלה עם impact ורעד-מסך, הלוגו נחבט פנימה והפס נחשף. אנרגטי, חד, עוצר תנועה בפיד."},
+    {n:3, file:"closer-3-cinematic.html", title:"חשיפה קולנועית",  bg:"קולנוע כהה",   desc:"תקריב על סמל צה״ל הזהוב, זום-אאוט איטי שחושף את הכובע, והטקסט מתחדד מטשטוש. דרמטי ויוקרתי."},
+    {n:4, file:"closer-4-draw.html",      title:"קו הזהות",        bg:"זית בינוני",   desc:"הפיתוחים מתנפנפים פנימה, הכובע מופיע, הטקסט נחשף ב-wipe וקו זהוב נמתח מתחתיו. אלגנטי ומדויק."},
+    {n:5, file:"closer-5-minimal.html",   title:"מינימל לבן",      bg:"לבן נקי",       desc:"נחיתה עדינה ושקטה על רקע לבן עם נשימה קלה. הכי קריא, הכי רגוע, מותגי-טהור — והרקע הלבן שביקשת."},
+  ];
+
+  const grid = document.getElementById("grid");
+  closers.forEach((c,i)=>{
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <div class="vidwrap">
+        <div class="num">${c.n}</div>
+        <iframe id="if${i}" src="${c.file}" loading="eager" title="${c.title}"></iframe>
+      </div>
+      <div class="meta">
+        <span class="bg-tag">רקע: ${c.bg}</span>
+        <h2>${c.title}</h2>
+        <p>${c.desc}</p>
+        <div class="cardbtns">
+          <button onclick="reloadOne(${i})">↻ נגן שוב</button>
+          <button onclick="fs('if${i}')">⤢ מסך מלא</button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  function reloadOne(i){ const f=document.getElementById("if"+i); f.src=f.src; }
+  function reloadAll(){ closers.forEach((_,i)=>reloadOne(i)); }
+  function fs(id){ const f=document.getElementById(id); (f.requestFullscreen||f.webkitRequestFullscreen||(()=>{})).call(f); }
+</script>
+
+<style>
+  body.big .grid{grid-template-columns:repeat(auto-fit,minmax(380px,1fr))}
+</style>
+</body>
+</html>
