@@ -41,9 +41,10 @@
       // המגבעת (חצי שמאל) והכומתה (חצי ימין) נכנסות ומתחברות ביחד — בעדינות, תנועה קצרה בלי סיבוב.
       // ברגע ההתלכדות cross-fade עדין לכובע השלם (עומק אחיד, בלי קו תפר). filter:none על החצאים מונע קו כהה במרכז.
       const DS = "drop-shadow(0 14px 30px rgba(40,38,18,.18))";
+      // קו החצייה הוויזואלי מגבעת↔כומתה ב-hat.png הוא ב-47% (הכיפה השחורה תופסת מעט פחות מחצי; הסמל בחצי הימני).
       gsap.set("#hat", { autoAlpha: 0, filter: DS });
-      gsap.set("#hatL", { display: "block", autoAlpha: 0, clipPath: "inset(0 calc(50% - 1px) 0 0)", x: -82, xPercent: -50, filter: "none" });
-      gsap.set("#hatR", { display: "block", autoAlpha: 0, clipPath: "inset(0 0 0 calc(50% - 1px))", x: 82, xPercent: -50, filter: "none" });
+      gsap.set("#hatL", { display: "block", autoAlpha: 0, clipPath: "inset(0 53% 0 0)", x: -50, xPercent: -50, filter: "none" });
+      gsap.set("#hatR", { display: "block", autoAlpha: 0, clipPath: "inset(0 0 0 47%)", x: 50, xPercent: -50, filter: "none" });
       gsap.set("#logoFull", { autoAlpha: 0, y: 50 });
 
       tl.to("#hatL", { autoAlpha: 1, x: 0, duration: 1.35, ease: "power3.out" }, 0.25)
