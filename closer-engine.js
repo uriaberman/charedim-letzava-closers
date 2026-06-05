@@ -38,14 +38,19 @@
     const tl = gsap.timeline({ repeat: RENDER ? 0 : -1, repeatDelay: 0.7, defaults: { ease: "power3.out" } });
 
     if (concept === "merge") {
-      // הכובע השלם מתגבש ומתחדד מטשטוש — קולנועי, חלק, "התגבשות לזהות אחת". אף פעם לא חתוך.
+      // המגבעת (חצי שמאל) והכומתה (חצי ימין) נכנסות ומתחברות ביחד — בעדינות, תנועה קצרה בלי סיבוב.
+      // ברגע ההתלכדות cross-fade עדין לכובע השלם (עומק אחיד, בלי קו תפר). filter:none על החצאים מונע קו כהה במרכז.
       const DS = "drop-shadow(0 14px 30px rgba(40,38,18,.18))";
-      gsap.set(["#hatL", "#hatR"], { display: "none" });
-      gsap.set("#hat", { autoAlpha: 0, scale: 1.13, filter: "blur(17px) " + DS });
-      gsap.set("#logoFull", { autoAlpha: 0, y: 46, filter: "blur(8px) " + DS });
+      gsap.set("#hat", { autoAlpha: 0, filter: DS });
+      gsap.set("#hatL", { display: "block", autoAlpha: 0, clipPath: "inset(0 calc(50% - 1px) 0 0)", x: -82, xPercent: -50, filter: "none" });
+      gsap.set("#hatR", { display: "block", autoAlpha: 0, clipPath: "inset(0 0 0 calc(50% - 1px))", x: 82, xPercent: -50, filter: "none" });
+      gsap.set("#logoFull", { autoAlpha: 0, y: 50 });
 
-      tl.to("#hat", { autoAlpha: 1, scale: 1, filter: "blur(0px) " + DS, duration: 1.3, ease: "power2.out" }, 0.2)
-        .to("#logoFull", { autoAlpha: 1, y: 0, filter: "blur(0px) " + DS, duration: 1.0, ease: "power2.out" }, 1.2);
+      tl.to("#hatL", { autoAlpha: 1, x: 0, duration: 1.35, ease: "power3.out" }, 0.25)
+        .to("#hatR", { autoAlpha: 1, x: 0, duration: 1.35, ease: "power3.out" }, 0.25)
+        .to("#hat", { autoAlpha: 1, duration: 0.55, ease: "power1.inOut" }, 1.45)        // התחברו → כובע שלם עם עומק
+        .to(["#hatL", "#hatR"], { autoAlpha: 0, duration: 0.55, ease: "power1.inOut" }, 1.45)
+        .to("#logoFull", { autoAlpha: 1, y: 0, duration: 0.95, ease: "power2.out" }, 1.8);
     }
 
     else if (concept === "together") {
