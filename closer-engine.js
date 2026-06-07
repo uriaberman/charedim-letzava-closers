@@ -41,17 +41,18 @@
       // המגבעת (חצי שמאל) והכומתה (חצי ימין) נכנסות ומתחברות ביחד — בעדינות, תנועה קצרה בלי סיבוב.
       // ברגע ההתלכדות cross-fade עדין לכובע השלם (עומק אחיד, בלי קו תפר). filter:none על החצאים מונע קו כהה במרכז.
       const DS = "drop-shadow(0 14px 30px rgba(40,38,18,.18))";
-      // קו החצייה הוויזואלי מגבעת↔כומתה ב-hat.png הוא ב-47% (הכיפה השחורה תופסת מעט פחות מחצי; הסמל בחצי הימני).
-      gsap.set("#hat", { autoAlpha: 0, filter: DS });
-      gsap.set("#hatL", { display: "block", autoAlpha: 0, clipPath: "inset(0 53% 0 0)", x: -50, xPercent: -50, filter: "none" });
-      gsap.set("#hatR", { display: "block", autoAlpha: 0, clipPath: "inset(0 0 0 47%)", x: 50, xPercent: -50, filter: "none" });
+      // קו החצייה ב-47% (קו התפר מגבעת↔כומתה). הצבע נשמר במדויק — החצאים תמיד ב-opacity מלא,
+      // הכובע השלם מופיע מעליהם בסוף לעומק (בלי cross-fade שמדהה את הכומתה אל הרקע הלבן).
+      gsap.set("#hat", { autoAlpha: 0, filter: DS, zIndex: 6 });
+      gsap.set("#hatL", { display: "block", autoAlpha: 1, clipPath: "inset(0 53% 0 0)", x: -72, xPercent: -50, filter: "none", zIndex: 4 });
+      gsap.set("#hatR", { display: "block", autoAlpha: 1, clipPath: "inset(0 0 0 47%)", x: 72, xPercent: -50, filter: "none", zIndex: 4 });
       gsap.set("#logoFull", { autoAlpha: 0, y: 50 });
 
-      tl.to("#hatL", { autoAlpha: 1, x: 0, duration: 1.35, ease: "power3.out" }, 0.25)
-        .to("#hatR", { autoAlpha: 1, x: 0, duration: 1.35, ease: "power3.out" }, 0.25)
-        .to("#hat", { autoAlpha: 1, duration: 0.55, ease: "power1.inOut" }, 1.45)        // התחברו → כובע שלם עם עומק
-        .to(["#hatL", "#hatR"], { autoAlpha: 0, duration: 0.55, ease: "power1.inOut" }, 1.45)
-        .to("#logoFull", { autoAlpha: 1, y: 0, duration: 0.95, ease: "power2.out" }, 1.8);
+      tl.to("#hatL", { x: 0, duration: 1.35, ease: "power3.out" }, 0.3)
+        .to("#hatR", { x: 0, duration: 1.35, ease: "power3.out" }, 0.3)
+        .to("#hat", { autoAlpha: 1, duration: 0.5, ease: "power1.out" }, 1.55)   // כובע שלם מעל החצאים המלאים → עומק + תפר נקי, בלי דהייה
+        .set(["#hatL", "#hatR"], { autoAlpha: 0 }, 2.1)                          // מוסתרים מתחת ל-hat המלא
+        .to("#logoFull", { autoAlpha: 1, y: 0, duration: 0.95, ease: "power2.out" }, 1.95);
     }
 
     else if (concept === "together") {
