@@ -71,6 +71,7 @@ body[data-bg="white"] .bg::after{content:"";position:absolute;inset:0;
 .logoFull{ top:67%; width:700px; transform:translate(-50%,-50%); }
 .logoTop { top:62%; width:700px; transform:translate(-50%,-50%); display:none;}
 .logoStrip{ top:74%; width:560px; transform:translate(-50%,-50%); display:none;}
+.helpline{ top:90%; width:270px; transform:translate(-50%,-50%); display:none; } /* אופציה 3 בלבד — מיני-כותר CTA */
 
 .swashL,.swashR{ top:72%; width:122px; transform:translate(-50%,-50%); display:none; opacity:.9;}
 .swashL{ left:10%; }

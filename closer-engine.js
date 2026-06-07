@@ -16,6 +16,7 @@
         <img class="hatL" id="hatL" src="assets/hat.png" alt="">
         <img class="hatR" id="hatR" src="assets/hat.png" alt="">
         <img class="logoFull" id="logoFull" src="assets/logo-text.png" alt="חרדים לצבא">
+        <img class="helpline" id="helpline" src="assets/helpline.png" alt="צריכים עזרה? אנחנו כאן">
       </div>
     </div>`;
   body.appendChild(frame);
@@ -71,10 +72,12 @@
       gsap.set(["#hatL", "#hatR"], { display: "none" });
       gsap.set("#hat", { autoAlpha: 0, scale: 0.55, transformOrigin: "50% 72%" });
       gsap.set("#logoFull", { autoAlpha: 0, scale: 0.62, y: 18 });
+      gsap.set("#helpline", { display: "block", autoAlpha: 0, y: 36, scale: 0.92 });
 
       tl.to("#hat", { autoAlpha: 1, scale: 1, duration: 0.7, ease: "back.out(1.7)" }, 0.25)
         .to("#hat", { rotation: -4, duration: 0.45, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0.95)
-        .to("#logoFull", { autoAlpha: 1, scale: 1, y: 0, duration: 0.6, ease: "back.out(2)" }, 0.72);
+        .to("#logoFull", { autoAlpha: 1, scale: 1, y: 0, duration: 0.6, ease: "back.out(2)" }, 0.72)
+        .to("#helpline", { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.6)" }, 1.45); // נכנס אחרי הלוגו
     }
 
     else if (concept === "draw") {
