@@ -71,7 +71,7 @@ body[data-bg="white"] .bg::after{content:"";position:absolute;inset:0;
 .logoFull{ top:67%; width:700px; transform:translate(-50%,-50%); }
 .logoTop { top:62%; width:700px; transform:translate(-50%,-50%); display:none;}
 .logoStrip{ top:74%; width:560px; transform:translate(-50%,-50%); display:none;}
-.helpline{ top:80%; width:405px; transform:translate(-50%,-50%); display:none; } /* אופציה 3 בלבד — מיני-כותר CTA בשליש התחתון */
+.helpline{ top:80%; height:184px; width:auto; transform:translate(-50%,-50%); display:none; } /* אופציה 3 — מיני-כותר CTA, גובה קבוע לעקביות בין וריאציות */
 
 /* אופציה 3 (pop) — מעלים כובע+לוגו כדי לפנות מקום ל-CTA למטה */
 body[data-concept="pop"] .hat{ top:30%; }
