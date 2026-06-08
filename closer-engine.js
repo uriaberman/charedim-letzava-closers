@@ -40,7 +40,7 @@
   imgs.forEach((im) => { if (im.complete) ready(); else { im.onload = ready; im.onerror = ready; } });
 
   function start() {
-    const tl = gsap.timeline({ repeat: RENDER ? 0 : -1, repeatDelay: 0.7, defaults: { ease: "power3.out" } });
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } }); // ה-build (ההופעות); ייעטף ב-master למטה
 
     if (concept === "merge") {
       // המגבעת (חצי שמאל) והכומתה (חצי ימין) נכנסות ומתחברות ביחד — בעדינות, תנועה קצרה בלי סיבוב.
@@ -105,12 +105,18 @@
         .to("#hat", { y: -7, duration: 1.7, ease: "sine.inOut", yoyo: true, repeat: RENDER ? 0 : 1 }, 1.7);
     }
 
-    // hold על הפריים הסופי
-    tl.to({}, { duration: 1.5 });
-    // fade-out רק במצב תצוגה (loop). ברינדור — נשארים על הלוגו.
-    if (!RENDER) tl.to("#world > *", { autoAlpha: 0, duration: 0.5 });
+    // מתיחת ההופעות ב-30% (רגועות, מתאימות לאורך החדש) + הארכה כוללת של ~3 שניות
+    const SLOW = 1.3;
+    const buildDur = tl.duration();
+    tl.timeScale(1 / SLOW);
 
-    window.__tl = tl;
+    const master = gsap.timeline({ repeat: RENDER ? 0 : -1, repeatDelay: 0.7 });
+    master.add(tl, 0);
+    const holdDur = (buildDur + 1.5 + 3) - buildDur * SLOW; // hold שמשלים ל-+3 שניות סה"כ
+    master.to({}, { duration: Math.max(0.8, holdDur) });
+    if (!RENDER) master.to("#world > *", { autoAlpha: 0, duration: 0.5 });
+
+    window.__tl = master;
     window.__ready = true;
   }
 })();
