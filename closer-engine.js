@@ -16,14 +16,14 @@
         <img class="hatL" id="hatL" src="assets/hat.png" alt="">
         <img class="hatR" id="hatR" src="assets/hat.png" alt="">
         <img class="logoFull" id="logoFull" src="assets/logo-text.png" alt="חרדים לצבא">
-        <img class="helpline" id="helpline" src="assets/helpline-a.png" alt="קריאה לפעולה">
+        <img class="helpline" id="helpline" src="assets/helpline-a.png?v=8" alt="קריאה לפעולה">
       </div>
     </div>`;
   body.appendChild(frame);
 
   // וריאציית CTA (אופציה 3) — מתחלפת לפי data-helpline ב-body
   const hlVar = body.dataset.helpline;
-  if (hlVar) document.getElementById("helpline").src = "assets/" + hlVar;
+  if (hlVar) document.getElementById("helpline").src = "assets/" + hlVar + "?v=8";
 
   const stage = document.getElementById("stage");
 
